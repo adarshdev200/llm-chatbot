@@ -11,7 +11,7 @@ class ChatMessage:
         if self.role not in ["user", "assistant", "system"]:
             raise ValueError(f"Invalid role: {self.role}")
     
-    def to_api_format(self):
+    def to_api_format(self): 
         return {"role": self.role, "content": self.content}
 
 @dataclass    
