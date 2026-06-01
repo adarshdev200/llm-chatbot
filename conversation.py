@@ -21,6 +21,9 @@ class Conversation :
 
     def add_user_message(self, content):
         self.messages.append(ChatMessage(role="user", content=content))
+    
+    def add_assistant_message(self, content):
+        self.messages.append(ChatMessage(role="assistant", content=content))
 
     def to_api_format(self):
         result = []

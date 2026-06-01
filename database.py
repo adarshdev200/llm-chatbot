@@ -24,13 +24,13 @@ class ChatDatabase:
         ) """)
         # TODO 6: Execute CREATE TABLE IF NOT EXISTS for messages
         self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS messages (
+            CREATE TABLE IF NOT EXISTS messages(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             conversation_id INTEGER,
             content TEXT,
             role TEXT,
-            FOREIGN KEY (conversation_id) REFERENCES conversations(id)
+            FOREIGN KEY (conversation_id) REFERENCES conversations(id))
             """)
 
         # TODO 7: self.conn.commit() to save the schema
@@ -85,3 +85,24 @@ class ChatDatabase:
     def close(self):
         # TODO 19: self.conn.close()
         self.conn.close()
+
+    def delete_conversation(self, conversation_id):
+    # TODO 1: Delete all messages WHERE conversation_id = ?
+
+        self.cursor.execute("""
+                        DROP * FROM messages WHERE conversation_id =?
+                            """ , (conversation_id,))
+        
+        self.cursor.execute("""
+                            DROP * FROM conversation WHERE id=?
+                            """, (conversation_id,))
+        self.conn.commit()
+
+
+    # TODO 2: Delete the conversation WHERE id = ?
+    # TODO 3: self.conn.commit()
+    pass
+
+
+
+    
